@@ -14,3 +14,5 @@ if [ "x$RNDC_ALGORITHM$RNDC_SECRET" != "x" ]; then
 	echo 'options { default-server '$RNDC_BIND_ADDRESS'; default-key "rndc-key"; };' >> /etc/bind/rndc.conf
 fi
 
+/usr/sbin/named -c /etc/bind/named.conf -g -u named
+

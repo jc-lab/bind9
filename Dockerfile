@@ -8,4 +8,4 @@ COPY files/named.conf /etc/bind/named.conf
 
 EXPOSE 953/tcp 53/tcp 53/udp
 
-CMD ["named", "-c", "/etc/bind/named.conf", "-g", "-u", "named"]
+CMD ["/docker-entrypoint.sh"]
