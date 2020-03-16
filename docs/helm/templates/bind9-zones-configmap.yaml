@@ -2,6 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-bind9-zones-config
+  labels:
+    app: bind9
+    release: {{ .Release.Name }}
 data:
   default-zone.conf: |
     /*
@@ -9,7 +12,21 @@ data:
       type master;
       file "/etc/bind/zones/example.com.zone";
       allow-update { none; };
-    }
+    };
     */
-  example.com.zone: |
+  example.com.zone: >
     $TTL        3H
+
+    @               IN         SOA          ns1.example.com. admin.example.com. 
+    (
+                                            20010504            ; serial
+                                            10800               ; refresh
+                                            3600                ; retry
+                                            3600000             ; expire
+                                            43200  )            ; mininum
+    
+              IN  NS  ns1.example.com.
+
+    ns1       IN  A   192.168.44.200
+
+    sub-1     IN  A   203.241.205.91
