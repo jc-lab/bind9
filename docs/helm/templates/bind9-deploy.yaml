@@ -38,7 +38,7 @@ spec:
             value: {{ .Values.bind9.rndc.keyAlgorithm | quote }}
           - name: RNDC_SECRET
             value: {{ .Values.bind9.rndc.secretKey | quote }}
-          volumes:
+          volumeMounts:
           - name: bind-zones
             mountPath: /etc/bind/zones
           resources:

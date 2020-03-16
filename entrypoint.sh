@@ -6,7 +6,7 @@ fi
 
 if [ "x$RNDC_ALGORITHM$RNDC_SECRET" != "x" ]; then
 	echo 'key "rndc-key" {' > /etc/bind/rndc.key
-	echo '     algorithm'$RNDC_ALGORITHM';' >> /etc/bind/rndc.key
+	echo '     algorithm '$RNDC_ALGORITHM';' >> /etc/bind/rndc.key
 	echo '     secret "'$RNDC_SECRET'";' >> /etc/bind/rndc.key
 	echo '};' >> /etc/bind/rndc.key
 	
