@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-bind9
+  labels:
+    app: bind9
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ default 3 .Values.bind9.replicas }}
+  selector:
+    matchLabels:
+      app: bind9
+    release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: bind9
+    release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: main
+{{- if .Values.bind9.dockerRepository }}
+          image: {{ printf "%s/%s" .Values.bind9.dockerRepository .Values.bind9.dockerImage | quote }}
+{{- else }}
+          image: {{ .Values.bind9.dockerImage | quote }}
+{{- end }}
+          imagePullPolicy: IfNotPresent
+          command:
+            - /entrypoint.sh
+          env:
+          - name: RNDC_BIND_ADDRESS
+            value: {{ .Values.bind9.rndc.bindAddress | quote }}
+          - name: RNDC_ALGORITHM
+            value: {{ .Values.bind9.rndc.keyAlgorithm | quote }}
+          - name: RNDC_SECRET
+            value: {{ .Values.bind9.rndc.secretKey | quote }}
+          resources:
+            requests:
+              memory: 128Mi
+            limits:
+              memory: 384Mi
