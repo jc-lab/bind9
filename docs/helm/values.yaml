@@ -1,6 +1,6 @@
 bind9:
   dockerRepository: 
-  dockerImage: jclab/bind9
+  dockerImage: jclab/bind9:9.12.4_p2-r0-b5
   rndc:
     bindAddress: localhost
     keyAlgorithm: hmac-sha256
