@@ -3,7 +3,7 @@ kind: Service
 metadata:
 {{- if .Values.bind9.serviceName }}
   name: {{ .Values.bind9.serviceName }}
-{{- else -}}
+{{- else }}
   name: {{ .Release.Name }}-bind9
 {{- end }}
 spec:

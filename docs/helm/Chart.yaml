@@ -1,4 +1,4 @@
 name: bind9
-version: 9.12.4_p2-r0-b3
+version: 9.12.4_p2-r0-b4
 appVersion: 9.12.4_p2-r0
 kubeVersion: ">=1.12.0"

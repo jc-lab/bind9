@@ -17,6 +17,10 @@ spec:
         app: bind9
     release: {{ .Release.Name }}
     spec:
+      volumes:
+      - name: bind-zones
+        configMap:
+          name: {{ .Release.Name }}-bind9-zones-config
       containers:
         - name: main
 {{- if .Values.bind9.dockerRepository }}
@@ -34,6 +38,9 @@ spec:
             value: {{ .Values.bind9.rndc.keyAlgorithm | quote }}
           - name: RNDC_SECRET
             value: {{ .Values.bind9.rndc.secretKey | quote }}
+          volumes:
+          - name: bind-zones
+            mountPath: /etc/bind/zones
           resources:
             requests:
               memory: 128Mi

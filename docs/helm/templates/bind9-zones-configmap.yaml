@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-bind9-zones-config
+data:
+  default-zone.conf: |
+    /*
+    zone "example.com" IN {
+      type master;
+      file "/etc/bind/zones/example.com.zone";
+      allow-update { none; };
+    }
+    */
+  example.com.zone: |
+    $TTL        3H
