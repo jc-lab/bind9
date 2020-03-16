@@ -10,12 +10,12 @@ spec:
   selector:
     matchLabels:
       app: bind9
-    release: {{ .Release.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: bind9
-    release: {{ .Release.Name }}
+        release: {{ .Release.Name }}
     spec:
       volumes:
       - name: bind-zones

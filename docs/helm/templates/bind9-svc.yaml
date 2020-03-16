@@ -6,6 +6,9 @@ metadata:
 {{- else }}
   name: {{ .Release.Name }}-bind9
 {{- end }}
+  labels:
+    app: bind9
+    release: {{ .Release.Name }}
 spec:
   selector:
     app: bind9
