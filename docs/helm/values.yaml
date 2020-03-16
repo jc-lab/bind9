@@ -1,5 +1,5 @@
 bind9:
-  dockerRepository: localhost:32000
+  dockerRepository: 
   dockerImage: jclab/bind9
   rndc:
     bindAddress: localhost
